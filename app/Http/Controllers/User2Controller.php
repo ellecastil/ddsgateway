@@ -13,15 +13,8 @@
     Class User2Controller extends Controller {     
         use ApiResponser;
         
-        /**
-        * The service to consume the User1 Microservice
-        * @var User2Service
-        */
+        public $user1Service;
         public $user2Service;
-        /**
-        * Create a new controller instance
-        * @return void
-        */
 
         public function __construct(User2Service $user2Service){
             $this->user2Service = $user2Service;
@@ -29,10 +22,6 @@
 
         public function getUsers(){     
             return $this->successResponse($this->user2Service->obtainUsers2());    
-        }
-
-        public function index(){
-            return $this->successResponse($this->user2Service->obtainUsers2());
         }
         
         public function addUser(Request $request){

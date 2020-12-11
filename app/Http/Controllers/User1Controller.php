@@ -17,6 +17,8 @@
         * @var User1Service
         */
         public $user1Service;
+
+        public $user2Service;
         /**
         * Create a new controller instance
         * @return void
@@ -29,10 +31,6 @@
 
         public function getUsers(){   
             return $this->successResponse($this->user1Service->obtainUsers1());      
-        }
-
-        public function index(){
-            return $this->successResponse($this->user1Service->obtainUsers1());
         }
         
         public function addUser(Request $request){

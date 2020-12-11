@@ -13,20 +13,25 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+// enable middleware
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
+
+$router->group(['middleware' =>'client.credentials'], function() use ($router){
+
+    // API routes for Site 1
+    $router->get('/users1', 'User1Controller@getUsers');
+    $router->post('/users1', 'User1Controller@addUser');
+    $router->get('/users1/{id}', 'User1Controller@show');
+    $router->put('/users1/{id}', 'User1Controller@update');
+    $router->delete('/users1/{id}', 'User1Controller@delete');
+
+    // API routes for Site 2
+    $router->get('/users2', 'User2Controller@getUsers');
+    $router->post('/users2', 'User2Controller@addUser');
+    $router->get('/users2/{id}', 'User2Controller@show');
+    $router->put('/users2/{id}', 'User2Controller@update');
+    $router->delete('/users2/{id}', 'User2Controller@delete');
+
 });
-
-$router->get('/users1', 'User1Controller@getUsers');
-// $router->get('/users1', 'User1Controller@index');
-$router->post('/users1', 'User1Controller@addUser');
-$router->get('/users1/{id}', 'User1Controller@show');
-$router->put('/users1/{id}', 'User1Controller@update');
-$router->delete('/users1/{id}', 'User1Controller@delete');
-
-$router->get('/users2', 'User2Controller@getUsers');
-// $router->get('/users2', 'User2Controller@index');
-$router->post('/users2', 'User2Controller@addUser');
-$router->get('/users2/{id}', 'User2Controller@show');
-$router->put('/users2/{id}', 'User2Controller@update');
-$router->delete('/users2/{id}', 'User2Controller@delete');
